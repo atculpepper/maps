@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import React, { useState, useEffect } from 'react';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import { StaticMap } from 'react-map-gl';
 import './App.css';
+// import * as kcNeighborhoodData from './kc-neighborhoods.json';
+// import * as kcTractsData from './kc-tracts.json';
+import DeckGL from '@deck.gl/react';
+import { GeoJsonLayer } from '@deck.gl/layers';
 
 function App() {
   const [viewport, setViewport] = useState({
@@ -10,6 +15,7 @@ function App() {
     width: '100vw',
     height: '100vh',
   });
+
   return (
     <div>
       <ReactMapGL
@@ -22,9 +28,7 @@ function App() {
           setViewport(viewport);
         }}
         mapStyle='mapbox://styles/atculpepper/ckckpreey54hr1iqknn1jr5iv'
-      >
-        markers here
-      </ReactMapGL>
+      ></ReactMapGL>
     </div>
   );
 }
