@@ -12,7 +12,15 @@ function App() {
   });
   return (
     <div>
-      <ReactMapGL {...viewport}>markers here</ReactMapGL>
+      <ReactMapGL
+        {...viewport}
+        //would like to use a .env variable, but token not getting read from .env file
+        mapboxApiAccessToken={
+          'pk.eyJ1IjoiYXRjdWxwZXBwZXIiLCJhIjoiY2tja29vdmpkMXZwZDJ5bWtrcHVtdDM2ZyJ9.l2ScIWaplavcSym2LB1kTQ'
+        }
+      >
+        markers here
+      </ReactMapGL>
     </div>
   );
 }
