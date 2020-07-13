@@ -18,6 +18,9 @@ function App() {
         mapboxApiAccessToken={
           'pk.eyJ1IjoiYXRjdWxwZXBwZXIiLCJhIjoiY2tja29vdmpkMXZwZDJ5bWtrcHVtdDM2ZyJ9.l2ScIWaplavcSym2LB1kTQ'
         }
+        onViewportChange={(viewport) => {
+          setViewport(viewport);
+        }}
       >
         markers here
       </ReactMapGL>
