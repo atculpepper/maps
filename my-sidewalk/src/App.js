@@ -21,6 +21,7 @@ function App() {
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
+        mapStyle='mapbox://styles/atculpepper/ckckpreey54hr1iqknn1jr5iv'
       >
         markers here
       </ReactMapGL>
