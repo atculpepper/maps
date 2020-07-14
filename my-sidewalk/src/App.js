@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import ReactMapboxGL, { Source, Layer } from '@urbica/react-map-gl';
 import './App.css';
-import * as kcNeighborhoodData from './kc-neighborhoods.json';
-import * as kcTractsData from './kc-tracts.json';
+// import * as kcNeighborhoodData from './kc-neighborhoods.json';
+// import * as kcTractsData from './kc-tracts.json';
+
+/*
+This approach came from reading:
+-Dallas Bille's "Intro to React Mapbox GL JS" 
+-Reading @urbica/react-map-gl documentation
+*/
 
 class App extends Component {
   state = {
@@ -10,8 +16,8 @@ class App extends Component {
       longitude: -94.4156972687773,
       latitude: 39.0144797821839,
       zoom: 10,
-      width: '100vw',
-      height: '100vh',
+      width: '80vw',
+      height: '80vh',
     },
   };
 
@@ -26,7 +32,7 @@ class App extends Component {
             'pk.eyJ1IjoiYXRjdWxwZXBwZXIiLCJhIjoiY2tja29vdmpkMXZwZDJ5bWtrcHVtdDM2ZyJ9.l2ScIWaplavcSym2LB1kTQ.MBiX1AqA8l3BYe89MUKdFw'
           }
           mapStyle='mapbox://styles/atculpepper/ckckpreey54hr1iqknn1jr5iv'
-          style={{ width: '100%', height: '500px' }}
+          style={{ width: '100%', height: '400px' }}
         >
           <Source
             id='kcNeighborhoods'
@@ -64,7 +70,7 @@ class App extends Component {
             />
           </Source>
         </ReactMapboxGL>
-        {/* <div>KC Commuter Data </div> */}
+        <div className='title'>KC Commuter Data </div>
       </div>
     );
   }
