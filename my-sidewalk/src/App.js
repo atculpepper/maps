@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
-import { StaticMap } from 'react-map-gl';
+import ReactMapGL, { Marker, GeoJSONLayer, Source, Layer } from 'react-map-gl';
+// import { StaticMap } from 'react-map-gl';
 import './App.css';
-// import * as kcNeighborhoodData from './kc-neighborhoods.json';
-// import * as kcTractsData from './kc-tracts.json';
-import DeckGL from '@deck.gl/react';
-import { GeoJsonLayer } from '@deck.gl/layers';
+import * as kcNeighborhoodData from './kc-neighborhoods.json';
+import * as kcTractsData from './kc-tracts.json';
+// import DeckGL from '@deck.gl/react';
+// import { GeoJsonLayer } from '@deck.gl/layers';
 
 function App() {
   const [viewport, setViewport] = useState({
@@ -15,6 +15,11 @@ function App() {
     width: '100vw',
     height: '100vh',
   });
+
+  // map.addSource('neighborhoodData', {
+  //   type: 'geojson',
+  //   data: './kc-neighborhoods.json',
+  // });
 
   return (
     <div>
@@ -28,7 +33,24 @@ function App() {
           setViewport(viewport);
         }}
         mapStyle='mapbox://styles/atculpepper/ckckpreey54hr1iqknn1jr5iv'
-      ></ReactMapGL>
+      >
+        {kcNeighborhoodData.features.map((feature) => (
+          <Source
+            key={feature.id}
+            id={feature.id}
+            type='geojson'
+            data={feature.data}
+          >
+            <Layer
+              key={feature.id}
+              id={feature.id}
+              type='fill'
+              paint={feature.paint}
+            />
+          </Source>
+        ))}
+      </ReactMapGL>
+      <div>KC Commuter Data </div>
     </div>
   );
 }
