@@ -1,58 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, GeoJSONLayer, Source, Layer } from 'react-map-gl';
-// import { StaticMap } from 'react-map-gl';
+import React, { Component } from 'react';
+import ReactMapboxGL, { Source, Layer } from '@urbica/react-map-gl';
 import './App.css';
 import * as kcNeighborhoodData from './kc-neighborhoods.json';
 import * as kcTractsData from './kc-tracts.json';
-// import DeckGL from '@deck.gl/react';
-// import { GeoJsonLayer } from '@deck.gl/layers';
 
-function App() {
-  const [viewport, setViewport] = useState({
-    longitude: -94.4156972687773,
-    latitude: 39.0144797821839,
-    zoom: 10,
-    width: '100vw',
-    height: '100vh',
-  });
+class App extends Component {
+  state = {
+    viewport: {
+      longitude: -94.4156972687773,
+      latitude: 39.0144797821839,
+      zoom: 10,
+      width: '100vw',
+      height: '100vh',
+    },
+  };
 
-  // map.addSource('neighborhoodData', {
-  //   type: 'geojson',
-  //   data: './kc-neighborhoods.json',
-  // });
-
-  return (
-    <div>
-      <ReactMapGL
-        {...viewport}
-        //would like to use a .env variable, but token not getting read from .env file
-        mapboxApiAccessToken={
-          'pk.eyJ1IjoiYXRjdWxwZXBwZXIiLCJhIjoiY2tja29vdmpkMXZwZDJ5bWtrcHVtdDM2ZyJ9.l2ScIWaplavcSym2LB1kTQ'
-        }
-        onViewportChange={(viewport) => {
-          setViewport(viewport);
-        }}
-        mapStyle='mapbox://styles/atculpepper/ckckpreey54hr1iqknn1jr5iv'
-      >
-        {kcNeighborhoodData.features.map((feature) => (
+  render() {
+    return (
+      <div>
+        <ReactMapboxGL
+          onViewportChange={(viewport) => this.setState({ viewport })}
+          {...this.state.viewport}
+          //would like to use a .env variable, but token not getting read from .env file
+          accessToken={
+            'pk.eyJ1IjoiYXRjdWxwZXBwZXIiLCJhIjoiY2tja29vdmpkMXZwZDJ5bWtrcHVtdDM2ZyJ9.l2ScIWaplavcSym2LB1kTQ.MBiX1AqA8l3BYe89MUKdFw'
+          }
+          mapStyle='mapbox://styles/atculpepper/ckckpreey54hr1iqknn1jr5iv'
+          style={{ width: '100%', height: '500px' }}
+        >
           <Source
-            key={feature.id}
-            id={feature.id}
+            id='kcNeighborhoods'
             type='geojson'
-            data={feature.data}
+            data={
+              'https://raw.githubusercontent.com/mysidewalk/interview/master/frontend-engineer/kc-neighborhoods.json'
+            }
           >
             <Layer
-              key={feature.id}
-              id={feature.id}
+              id='layer1'
               type='fill'
-              paint={feature.paint}
+              source='kcNeighborhoods'
+              paint={{
+                'fill-color': '#228b22',
+                'fill-opacity': 0.4,
+              }}
             />
           </Source>
-        ))}
-      </ReactMapGL>
-      <div>KC Commuter Data </div>
-    </div>
-  );
+
+          <Source
+            id='kcTracts'
+            type='geojson'
+            data={
+              'https://raw.githubusercontent.com/mysidewalk/interview/master/frontend-engineer/kc-neighborhoods.json'
+            }
+          >
+            <Layer
+              id='layer2'
+              type='fill'
+              source='kcTracts'
+              paint={{
+                'fill-color': '#9900ff',
+                'fill-opacity': 0.4,
+              }}
+            />
+          </Source>
+        </ReactMapboxGL>
+        {/* <div>KC Commuter Data </div> */}
+      </div>
+    );
+  }
 }
 
 export default App;
