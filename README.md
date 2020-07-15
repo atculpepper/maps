@@ -7,12 +7,13 @@ Using the following GeoJSON layers: ([kc-neighborhoods.json](kc-neighborhoods.js
 ## Notes
 This repository is a work in progress! Credit goes to:
 
--Dallas Bille's "Intro to React Mapbox GL JS" 
+- Dallas Bille's "Intro to React Mapbox GL JS" 
 - @urbica/react-map-gl documentation
--Mapbox documentation
--Leigh Halliday's "Interactive Maps in React"
+- Mapbox documentation
+- Leigh Halliday's "Interactive Maps in React"
+- Jad Joubran's coronavirus map 
 
-and many more for their excellent resources. I am still working on implementing to the prompt here.
+for their excellent resources. I am still working on implementing to the prompt here.
 
 ##Development
 
