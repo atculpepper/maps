@@ -5,9 +5,11 @@ import './App.css';
 // import * as kcTractsData from './kc-tracts.json';
 
 /*
-This approach came from reading:
+This approach came from:
 -Dallas Bille's "Intro to React Mapbox GL JS" 
--Reading @urbica/react-map-gl documentation
+- @urbica/react-map-gl documentation
+-Mapbox documentation
+-Leigh Halliday's "Interactive Maps in React"
 */
 
 class App extends Component {
@@ -40,17 +42,17 @@ class App extends Component {
             data={
               'https://raw.githubusercontent.com/mysidewalk/interview/master/frontend-engineer/kc-neighborhoods.json'
             }
-          >
-            <Layer
-              id='layer1'
-              type='fill'
-              source='kcNeighborhoods'
-              paint={{
-                'fill-color': '#228b22',
-                'fill-opacity': 0.4,
-              }}
-            />
-          </Source>
+          />
+          <Layer
+            id='layer1'
+            before='layer2'
+            type='fill'
+            source='kcNeighborhoods'
+            paint={{
+              'fill-color': '#228b22',
+              'fill-opacity': 0.4,
+            }}
+          />
 
           <Source
             id='kcTracts'
@@ -58,17 +60,16 @@ class App extends Component {
             data={
               'https://raw.githubusercontent.com/mysidewalk/interview/master/frontend-engineer/kc-neighborhoods.json'
             }
-          >
-            <Layer
-              id='layer2'
-              type='fill'
-              source='kcTracts'
-              paint={{
-                'fill-color': '#9900ff',
-                'fill-opacity': 0.4,
-              }}
-            />
-          </Source>
+          />
+          <Layer
+            id='layer2'
+            type='fill'
+            source='kcTracts'
+            paint={{
+              'fill-color': 'yellow',
+              'fill-opacity': 0.4,
+            }}
+          />
         </ReactMapboxGL>
         <div className='title'>KC Commuter Data </div>
       </div>
